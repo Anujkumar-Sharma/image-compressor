@@ -6,18 +6,18 @@ const { SERVER_URL } = require('../constant')
 
 const generateCSV = (products, requestId) => {
   const fields = [
-    'serialNumber',
-    'productName',
-    'inputImageUrls',
-    'outputImageUrls',
+    'S. No.',
+    'Product Name',
+    'Input Image Urls',
+    'Output Image Urls',
   ]
-  const opts = { fields, unwind: ['inputImageUrls', 'outputImageUrls'] }
+  const opts = { fields, unwind: ['Input Image Urls', 'Output Image Urls'] }
 
   const csvData = products.map((product) => ({
-    serialNumber: product.serialNumber,
-    productName: product.productName,
-    inputImageUrls: product.inputImageUrls.join(','),
-    outputImageUrls: product.outputImageUrls.join(','),
+    ['S. No.']: product.serialNumber,
+    ['Product Name']: product.productName,
+    ['Input Image Urls']: product.inputImageUrls.join(','),
+    ['Output Image Urls']: product.outputImageUrls.join(','),
   }))
 
   try {
